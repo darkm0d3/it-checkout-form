@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Checkout Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-page" id="loginPage">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="checkout-page" id="checkoutPage" style="display:none;">
+    <h2>Employee Info</h2>
+    <form id="employeeForm">
+      <label for="firstName">First Name:</label><input type="text" id="firstName"><br>
+      <label for="lastName">Last Name:</label><input type="text" id="lastName"><br>
+      <label for="department">Department:</label><input type="text" id="department"><br>
+      <label for="manager">Manager Name:</label><input type="text" id="manager"><br>
+      <label for="empNumber">Employee Number:</label><input type="text" id="empNumber"><br><br>
+      
+      <h3>Select IT Assets</h3>
+      <label for="laptop">Laptop:</label><input type="checkbox" id="laptop" onclick="toggleAssetForm()"><br>
+      <label for="accessories">Laptop Accessories:</label><input type="checkbox" id="accessories"><br>
+      <label for="desktop">Desktop:</label><input type="checkbox" id="desktop"><br>
+      <label for="mouse">Mouse:</label><input type="checkbox" id="mouse"><br>
+      <label for="keyboard">Keyboard:</label><input type="checkbox" id="keyboard"><br>
+      <label for="phone">Phone:</label><input type="checkbox" id="phone"><br><br>
+
+      <div id="laptopDetails" style="display:none;">
+        <label for="laptopModel">Model:</label><input type="text" id="laptopModel"><br>
+        <label for="assetTag">Asset Tag:</label><input type="text" id="assetTag"><br>
+        <label for="quantity">Quantity:</label><input type="number" id="quantity"><br>
+        <label for="serialNumber">Serial Number:</label><input type="text" id="serialNumber"><br><br>
+      </div>
+      
+      <button type="button" onclick="addToCheckout()">Add to Checkout</button>
+      <button type="button" onclick="clearCheckout()">Clear Checkout</button>
+      <button type="button" onclick="generatePDF()">Print PDF</button>
+    </form>
+    
+    <div id="checkoutForm">
+      <h3>Checkout</h3>
+      <p id="checkoutDetails"></p>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
