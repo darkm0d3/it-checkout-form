@@ -1,23 +1,41 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    background: url('images/bg1.jpg');
+    background: url('images/bg1.jpg') no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
 .form-container {
@@ -25,40 +43,94 @@ h2 {
 }
 
 .textbox {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .textbox input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 40px;
     font-size: 16px;
     margin-top: 5px;
     border: 2px solid #ccc;
-    border-radius: 5px;
-    transition: border 0.3s;
+    border-radius: 25px;
+    transition: border 0.3s, box-shadow 0.3s;
 }
 
 .textbox input:focus {
     border-color: #4caf50;
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.5);
+}
+
+.textbox::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+}
+
+.textbox.username::before {
+    background-image: url('images/email-icon.png');
+}
+
+.textbox.password::before {
+    background-image: url('images/password-icon.png');
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     background-color: #4caf50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.social-login {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.social-login a {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-login a:hover {
+    transform: scale(1.2);
+    color: #4caf50;
+}
+
+.social-login .google:hover {
+    color: #db4437;
+}
+
+.social-login .facebook:hover {
+    color: #1877f2;
+}
+
+.social-login .apple:hover {
+    color: #000;
 }
 
 .checkbox-container {
     margin: 20px 0;
+    text-align: center;
 }
 
 #asset-details {
@@ -70,6 +142,7 @@ button:hover {
     background-color: #f9f9f9;
     padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 10px;
 }
 
 #checkout-list div {
@@ -84,6 +157,7 @@ button:hover {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #checkout-list button:hover {
