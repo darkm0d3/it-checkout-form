@@ -1,77 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Asset Checkout</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-card {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-card h1 {
+      font-size: 24px;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .login-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .login-card input:focus {
+      outline: none;
+      border-color: #6c63ff;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      background-color: #6c63ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-card button:hover {
+      background-color: #574fdb;
+    }
+
+    .login-card a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .login-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Login Form -->
-        <div id="login-form" class="form-container">
-            <h2>Login</h2>
-            <form id="login">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-
-        <!-- IT Checkout Form -->
-        <div id="checkout-form" class="form-container" style="display: none;">
-            <h2>IT Checkout Form</h2>
-            <form id="checkout">
-                <div class="textbox">
-                    <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" placeholder="First Name" required>
-                </div>
-                <div class="textbox">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" placeholder="Last Name" required>
-                </div>
-                <div class="textbox">
-                    <label for="department">Department</label>
-                    <input type="text" id="department" placeholder="Department" required>
-                </div>
-                <div class="textbox">
-                    <label for="manager">Manager's Name</label>
-                    <input type="text" id="manager" placeholder="Manager's Name" required>
-                </div>
-                <div class="textbox">
-                    <label for="emp-number">Employee Number</label>
-                    <input type="text" id="emp-number" placeholder="Employee Number" required>
-                </div>
-
-                <div class="checkbox-container">
-                    <h3>Select IT Assets</h3>
-                    <label><input type="checkbox" class="asset" value="Laptop"> Laptop</label><br>
-                    <label><input type="checkbox" class="asset" value="Laptop Accessories"> Laptop Accessories</label><br>
-                    <label><input type="checkbox" class="asset" value="Desktop"> Desktop</label><br>
-                    <label><input type="checkbox" class="asset" value="Mouse"> Mouse</label><br>
-                    <label><input type="checkbox" class="asset" value="Keyboard"> Keyboard</label><br>
-                    <label><input type="checkbox" class="asset" value="Phone"> Phone</label><br>
-                </div>
-
-                <div id="asset-details" style="display: none;">
-                    <h3>Asset Details</h3>
-                    <label for="model">Model</label>
-                    <input type="text" id="model" placeholder="Model" required><br>
-                    <label for="asset-tag">Asset Tag</label>
-                    <input type="text" id="asset-tag" placeholder="Asset Tag" required><br>
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" placeholder="Quantity" required><br>
-                    <label for="serial-number">Serial Number</label>
-                    <input type="text" id="serial-number" placeholder="Serial Number" required><br>
-                </div>
-
-                <h3>Checkout</h3>
-                <div id="checkout-list"></div>
-                <button type="button" id="print-btn">Print</button>
-            </form>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <div class="login-card">
+    <h1>Welcome Back</h1>
+    <p>Please log in to your account</p>
+    <form>
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Log In</button>
+    </form>
+    <a href="#">Forgot Password?</a>
+  </div>
 </body>
 </html>
