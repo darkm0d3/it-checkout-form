@@ -3,44 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Successful</title>
+  <title>Checkout Form</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: url('images/bg2.jpg');
+      padding: 40px;
+      background-image: url('images/bg2.jpeg');
       background-size: cover;
       background-position: center;
-      color: white;
+      color: #2d3436;
+      min-height: 100vh;
+    }
+
+    .success-header {
       text-align: center;
-    }
-
-    .success-message {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 2rem;
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 20px auto;
     }
 
-    .success-message h1 {
-      font-size: 24px;
-      margin-bottom: 1rem;
+    .checkout-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
     }
 
-    .success-message p {
-      font-size: 16px;
-    }
+    /* Keep all previous CSS styles from the checkout form */
+    /* [PASTE ALL THE CSS FROM THE CHECKOUT FORM EXAMPLE HERE] */
+    /* (The same styles as in the previous answer) */
   </style>
 </head>
 <body>
-  <div class="success-message">
-    <h1>Login Successful!</h1>
-    <p>Welcome back, Felix Madjos.</p>
+  <!-- Success Message -->
+  <div class="success-header">
+    <h1>Welcome Back, Felix Madjos!</h1>
+    <p>Please complete your equipment request below</p>
   </div>
+
+  <!-- Checkout Form -->
+  <div class="checkout-container">
+    <!-- [PASTE THE ENTIRE CHECKOUT FORM HTML STRUCTURE HERE] -->
+    <!-- (The same HTML structure as in the previous answer) -->
+  </div>
+
+  <!-- [PASTE THE MODAL HTML AND JAVASCRIPT HERE] -->
+  <!-- (The same modal and JS code from the previous answer) -->
 </body>
 </html>
