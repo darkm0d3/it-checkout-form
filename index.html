@@ -7,22 +7,34 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      background-image: url('images/bg1.jpeg');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
     }
 
     .login-card {
-      background-color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
       text-align: center;
+      transform: translateY(-100%);
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateY(0);
+      }
     }
 
     .login-card h1 {
@@ -84,12 +96,28 @@
   <div class="login-card">
     <h1>Welcome Back</h1>
     <p>Please log in to your account</p>
-    <form>
-      <input type="email" placeholder="Email Address" required>
-      <input type="password" placeholder="Password" required>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email Address" value="felixmadjos@gmail.com" required>
+      <input type="password" id="password" placeholder="Password" value="NICE" required>
       <button type="submit">Log In</button>
     </form>
     <a href="#">Forgot Password?</a>
   </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Check if email and password match
+      if (email === 'felixmadjos@gmail.com' && password === 'NICE') {
+        window.location.href = 'success.html'; // Redirect to success page
+      } else {
+        alert('Invalid email or password. Please try again.');
+      }
+    });
+  </script>
 </body>
 </html>
