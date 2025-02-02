@@ -3,53 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Checkout Form</title>
+    <title>IT Asset Checkout</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Login Form -->
-    <div class="login-form">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
-
-    <!-- IT Checkout Form (will be shown after login) -->
-    <div id="checkoutForm" style="display:none;">
-        <h2>Employee Information</h2>
-        <form id="employeeForm">
-            <input type="text" id="firstName" placeholder="First Name" required />
-            <input type="text" id="lastName" placeholder="Last Name" required />
-            <input type="text" id="department" placeholder="Department" required />
-            <input type="text" id="manager" placeholder="Manager's Name" required />
-            <input type="text" id="employeeNumber" placeholder="Employee Number" required />
-        </form>
-
-        <h2>IT Assets</h2>
-        <form id="assetsForm">
-            <label for="laptop">Laptop</label>
-            <input type="checkbox" id="laptop" />
-            <div id="laptopDetails" style="display: none;">
-                <input type="text" id="laptopModel" placeholder="Model" />
-                <input type="text" id="laptopAsset" placeholder="Asset Tag" />
-                <input type="text" id="laptopSerial" placeholder="Serial Number" />
-                <input type="number" id="laptopQuantity" placeholder="Quantity" />
-            </div>
-
-            <label for="mouse">Mouse</label>
-            <input type="checkbox" id="mouse" />
-            <!-- You can add other assets here similarly -->
-        </form>
-
-        <h2>Checkout Information</h2>
-        <div id="checkoutList">
-            <!-- Selected items will show up here -->
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login-form" class="form-container">
+            <h2>Login</h2>
+            <form id="login">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
         </div>
 
-        <button onclick="generatePDF()">Print PDF</button>
+        <!-- IT Checkout Form -->
+        <div id="checkout-form" class="form-container" style="display: none;">
+            <h2>IT Checkout Form</h2>
+            <form id="checkout">
+                <div class="textbox">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" placeholder="First Name" required>
+                </div>
+                <div class="textbox">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Last Name" required>
+                </div>
+                <div class="textbox">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" placeholder="Department" required>
+                </div>
+                <div class="textbox">
+                    <label for="manager">Manager's Name</label>
+                    <input type="text" id="manager" placeholder="Manager's Name" required>
+                </div>
+                <div class="textbox">
+                    <label for="emp-number">Employee Number</label>
+                    <input type="text" id="emp-number" placeholder="Employee Number" required>
+                </div>
+
+                <div class="checkbox-container">
+                    <h3>Select IT Assets</h3>
+                    <label><input type="checkbox" class="asset" value="Laptop"> Laptop</label><br>
+                    <label><input type="checkbox" class="asset" value="Laptop Accessories"> Laptop Accessories</label><br>
+                    <label><input type="checkbox" class="asset" value="Desktop"> Desktop</label><br>
+                    <label><input type="checkbox" class="asset" value="Mouse"> Mouse</label><br>
+                    <label><input type="checkbox" class="asset" value="Keyboard"> Keyboard</label><br>
+                    <label><input type="checkbox" class="asset" value="Phone"> Phone</label><br>
+                </div>
+
+                <div id="asset-details" style="display: none;">
+                    <h3>Asset Details</h3>
+                    <label for="model">Model</label>
+                    <input type="text" id="model" placeholder="Model" required><br>
+                    <label for="asset-tag">Asset Tag</label>
+                    <input type="text" id="asset-tag" placeholder="Asset Tag" required><br>
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" placeholder="Quantity" required><br>
+                    <label for="serial-number">Serial Number</label>
+                    <input type="text" id="serial-number" placeholder="Serial Number" required><br>
+                </div>
+
+                <h3>Checkout</h3>
+                <div id="checkout-list"></div>
+                <button type="button" id="print-btn">Print</button>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
