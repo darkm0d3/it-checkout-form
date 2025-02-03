@@ -38,9 +38,98 @@
       gap: 40px;
     }
 
-    /* Keep all previous CSS styles from the checkout form */
-    /* [PASTE ALL THE CSS FROM THE CHECKOUT FORM EXAMPLE HERE] */
-    /* (The same styles as in the previous answer) */
+    .form-section {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2d3436;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #636e72;
+      font-weight: 500;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dcdde1;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .assets-section {
+      border-left: 2px solid #f1f2f6;
+      padding-left: 40px;
+    }
+
+    .asset-item {
+      margin-bottom: 20px;
+    }
+
+    .asset-item label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .summary-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 400px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .close-modal {
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .selected-assets {
+      margin-top: 30px;
+    }
+
+    .asset-details {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
@@ -52,289 +141,158 @@
 
   <!-- Checkout Form -->
   <div class="checkout-container">
-    <!-- [PASTE THE ENTIRE CHECKOUT FORM HTML STRUCTURE HERE] -->
-    <!-- (The same HTML structure as in the previous answer) -->
+    <!-- Personal Information Column -->
+    <div class="form-section">
+      <h2>Employee Information</h2>
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Manager's Name</label>
+        <input type="text" required>
+      </div>
+      <div class="form-group">
+        <label>Department</label>
+        <input type="text" required>
+      </div>
+    </div>
+
+    <!-- Assets Selection Column -->
+    <div class="form-section assets-section">
+      <h2>Select Assets</h2>
+      <div class="asset-item">
+        <label>
+          <input type="checkbox" class="asset-checkbox" data-type="laptop">
+          Laptop
+        </label>
+      </div>
+      <div class="asset-item">
+        <label>
+          <input type="checkbox" class="asset-checkbox" data-type="monitor">
+          Monitor
+        </label>
+      </div>
+      <div class="asset-item">
+        <label>
+          <input type="checkbox" class="asset-checkbox" data-type="phone">
+          Phone
+        </label>
+      </div>
+      <div class="asset-item">
+        <label>
+          <input type="checkbox" class="asset-checkbox" data-type="accessories">
+          Other Accessories
+        </label>
+      </div>
+
+      <!-- Selected Assets Summary -->
+      <div class="selected-assets" id="selectedAssets">
+        <h3>Selected Items</h3>
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
   </div>
 
-  <!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Form</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 40px;
-            background: #f5f6fa;
-        }
-
-        .checkout-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .form-section {
-            padding: 20px;
-        }
-
-        h2 {
-            color: #2d3436;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #636e72;
-            font-weight: 500;
-        }
-
-        input[type="text"], select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #dcdde1;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .assets-section {
-            border-left: 2px solid #f1f2f6;
-            padding-left: 40px;
-        }
-
-        .asset-item {
-            margin-bottom: 20px;
-        }
-
-        .asset-item label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .summary-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            width: 400px;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .close-modal {
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .selected-assets {
-            margin-top: 30px;
-        }
-
-        .asset-details {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-    </style>
-</head>
-<body>
-    <div class="checkout-container">
-        <!-- Personal Information Column -->
-        <div class="form-section">
-            <h2>Employee Information</h2>
-            <div class="form-group">
-                <label>First Name</label>
-                <input type="text" required>
-            </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" required>
-            </div>
-            <div class="form-group">
-                <label>Manager's Name</label>
-                <input type="text" required>
-            </div>
-            <div class="form-group">
-                <label>Department</label>
-                <input type="text" required>
-            </div>
+  <!-- Modal for Asset Details -->
+  <div class="modal" id="assetModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Asset Details</h3>
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+      </div>
+      <form id="assetForm">
+        <div class="form-group">
+          <label>Model</label>
+          <input type="text" id="model" required>
         </div>
-
-        <!-- Assets Selection Column -->
-        <div class="form-section assets-section">
-            <h2>Select Assets</h2>
-            <div class="asset-item">
-                <label>
-                    <input type="checkbox" class="asset-checkbox" data-type="laptop">
-                    Laptop
-                </label>
-            </div>
-            <div class="asset-item">
-                <label>
-                    <input type="checkbox" class="asset-checkbox" data-type="monitor">
-                    Monitor
-                </label>
-            </div>
-            <div class="asset-item">
-                <label>
-                    <input type="checkbox" class="asset-checkbox" data-type="phone">
-                    Phone
-                </label>
-            </div>
-            <div class="asset-item">
-                <label>
-                    <input type="checkbox" class="asset-checkbox" data-type="accessories">
-                    Other Accessories
-                </label>
-            </div>
-
-            <!-- Selected Assets Summary -->
-            <div class="selected-assets" id="selectedAssets">
-                <h3>Selected Items</h3>
-                <!-- Dynamic content will be inserted here -->
-            </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" id="quantity" required>
         </div>
+        <div class="form-group">
+          <label>Serial Number</label>
+          <input type="text" id="serial" required>
+        </div>
+        <div class="form-group">
+          <label>Asset Tag</label>
+          <input type="text" id="tag" required>
+        </div>
+        <button type="submit" class="submit-btn">Save Details</button>
+      </form>
     </div>
+  </div>
 
-    <!-- Modal for Asset Details -->
-    <div class="modal" id="assetModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Asset Details</h3>
-                <span class="close-modal" onclick="closeModal()">&times;</span>
-            </div>
-            <form id="assetForm">
-                <div class="form-group">
-                    <label>Model</label>
-                    <input type="text" id="model" required>
-                </div>
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="number" id="quantity" required>
-                </div>
-                <div class="form-group">
-                    <label>Serial Number</label>
-                    <input type="text" id="serial" required>
-                </div>
-                <div class="form-group">
-                    <label>Asset Tag</label>
-                    <input type="text" id="tag" required>
-                </div>
-                <button type="submit" class="submit-btn">Save Details</button>
-            </form>
-        </div>
-    </div>
+  <script>
+    const assetsData = {};
+    let currentAssetType = null;
 
-    <script>
-        const assetsData = {};
-        let currentAssetType = null;
-
-        document.querySelectorAll('.asset-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const assetType = this.dataset.type;
-                
-                if (this.checked) {
-                    currentAssetType = assetType;
-                    showModal();
-                } else {
-                    delete assetsData[assetType];
-                    updateSummary();
-                }
-            });
-        });
-
-        function showModal() {
-            document.getElementById('assetModal').style.display = 'flex';
+    document.querySelectorAll('.asset-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const assetType = this.dataset.type;
+        
+        if (this.checked) {
+          currentAssetType = assetType;
+          showModal();
+        } else {
+          delete assetsData[assetType];
+          updateSummary();
         }
+      });
+    });
 
-        function closeModal() {
-            document.getElementById('assetModal').style.display = 'none';
-            document.getElementById('assetForm').reset();
-        }
+    function showModal() {
+      document.getElementById('assetModal').style.display = 'flex';
+    }
 
-        document.getElementById('assetForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            assetsData[currentAssetType] = {
-                model: document.getElementById('model').value,
-                quantity: document.getElementById('quantity').value,
-                serial: document.getElementById('serial').value,
-                tag: document.getElementById('tag').value
-            };
+    function closeModal() {
+      document.getElementById('assetModal').style.display = 'none';
+      document.getElementById('assetForm').reset();
+    }
 
-            updateSummary();
-            closeModal();
-        });
+    document.getElementById('assetForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      assetsData[currentAssetType] = {
+        model: document.getElementById('model').value,
+        quantity: document.getElementById('quantity').value,
+        serial: document.getElementById('serial').value,
+        tag: document.getElementById('tag').value
+      };
 
-        function updateSummary() {
-            const summaryContainer = document.getElementById('selectedAssets');
-            summaryContainer.innerHTML = '<h3>Selected Items</h3>';
-            
-            for (const [type, details] of Object.entries(assetsData)) {
-                const assetDiv = document.createElement('div');
-                assetDiv.className = 'asset-details';
-                assetDiv.innerHTML = `
-                    <h4>${type.charAt(0).toUpperCase() + type.slice(1)}</h4>
-                    <p>Model: ${details.model}</p>
-                    <p>Quantity: ${details.quantity}</p>
-                    <p>Serial: ${details.serial}</p>
-                    <p>Asset Tag: ${details.tag}</p>
-                `;
-                summaryContainer.appendChild(assetDiv);
-            }
-        }
+      updateSummary();
+      closeModal();
+    });
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('assetModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-    </script>
-</body>
-</html>
+    function updateSummary() {
+      const summaryContainer = document.getElementById('selectedAssets');
+      summaryContainer.innerHTML = '<h3>Selected Items</h3>';
+      
+      for (const [type, details] of Object.entries(assetsData)) {
+        const assetDiv = document.createElement('div');
+        assetDiv.className = 'asset-details';
+        assetDiv.innerHTML = `
+          <h4>${type.charAt(0).toUpperCase() + type.slice(1)}</h4>
+          <p>Model: ${details.model}</p>
+          <p>Quantity: ${details.quantity}</p>
+          <p>Serial: ${details.serial}</p>
+          <p>Asset Tag: ${details.tag}</p>
+        `;
+        summaryContainer.appendChild(assetDiv);
+      }
+    }
 
- -->
-  <!-- (The same modal and JS code from the previous answer) -->
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('assetModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
