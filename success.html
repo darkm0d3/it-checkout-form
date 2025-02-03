@@ -4,172 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout Form</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 40px;
-      background-image: url('images/bg2.jpg');
-      background-size: cover;
-      background-position: center;
-      color: #2d3436;
-      min-height: 100vh;
-    }
-
-    .success-header {
-      text-align: center;
-      margin-bottom: 40px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 800px;
-      margin: 20px auto;
-    }
-
-    .checkout-container {
-      max-width: 1200px;
-      margin: 20px auto;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-
-    .form-section {
-      padding: 20px;
-    }
-
-    h2 {
-      color: #2d3436;
-      margin-bottom: 30px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #636e72;
-      font-weight: 500;
-    }
-
-    input[type="text"], select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #dcdde1;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    .assets-section {
-      border-left: 2px solid #f1f2f6;
-      padding-left: 40px;
-    }
-
-    .asset-item {
-      margin-bottom: 20px;
-    }
-
-    .asset-item label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-
-    .summary-card {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 30px;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 400px;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .close-modal {
-      cursor: pointer;
-      font-size: 24px;
-    }
-
-    .selected-assets {
-      margin-top: 30px;
-    }
-
-    .asset-details {
-      background: #f8f9fa;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-.submit-btn {
-      background: linear-gradient(135deg, #4a90e2, #50e3c2);
-      color: white;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      margin: 20px auto;
-      display: block;
-      transition: transform 0.2s;
-    }
-
-    .submit-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* Add employee number field styling (already in HTML) */
-    select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #dcdde1;
-      border-radius: 8px;
-      font-size: 14px;
-      appearance: none;
-      background: white;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Success Message -->
   <div class="success-header">
     <h1>Welcome Back, Felix Madjos!</h1>
     <p>Please complete your equipment request below</p>
+    <button onclick="window.location.href='index.html'" class="logout-btn">Logout</button>
   </div>
 
-  <!-- Checkout Form Container -->
   <div class="checkout-container">
-    <!-- Employee Information Column -->
     <div class="form-section">
       <h2>Employee Information</h2>
       <div class="form-group">
@@ -194,7 +38,6 @@
       </div>
     </div>
 
-    <!-- Assets Selection Column -->
     <div class="form-section assets-section">
       <h2>Select Assets</h2>
       <div class="asset-item">
@@ -222,20 +65,17 @@
         </label>
       </div>
 
-      <!-- Selected Assets Summary -->
       <div class="selected-assets" id="selectedAssets">
         <h3>Selected Items</h3>
-        <!-- Dynamic content will be inserted here -->
       </div>
     </div>
   </div>
 
-  <!-- Single Modal for Asset Details -->
   <div class="modal" id="assetModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 id="modalTitle">Asset Details</h3>
-        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3>Asset Details</h3>
+        <span class="close-modal">&times;</span>
       </div>
       <form id="assetForm">
         <div class="form-group">
@@ -253,7 +93,6 @@
           <label>Quantity</label>
           <select id="quantity" required>
             <option value="">Select Quantity</option>
-            <!-- JavaScript will populate these options -->
           </select>
         </div>
         <div class="form-group">
@@ -279,25 +118,68 @@
       quantitySelect.appendChild(option);
     }
 
-    // Rest of your JavaScript remains the same
     const assetsData = {};
     let currentAssetType = null;
 
     document.querySelectorAll('.asset-checkbox').forEach(checkbox => {
       checkbox.addEventListener('change', function() {
-        const assetType = this.dataset.type;
-        
         if (this.checked) {
-          currentAssetType = assetType;
+          currentAssetType = this.dataset.type;
           showModal();
         } else {
-          delete assetsData[assetType];
+          delete assetsData[currentAssetType];
           updateSummary();
         }
       });
     });
 
-    // ... (keep the rest of the JavaScript the same) ...
+    document.querySelector('.close-modal').addEventListener('click', closeModal);
+    
+    document.getElementById('assetForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      assetsData[currentAssetType] = {
+        model: document.getElementById('model').value,
+        quantity: document.getElementById('quantity').value,
+        serial: document.getElementById('serial').value,
+        tag: document.getElementById('tag').value
+      };
+      updateSummary();
+      closeModal();
+    });
+
+    function showModal() {
+      document.getElementById('assetModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('assetModal').style.display = 'none';
+      document.getElementById('assetForm').reset();
+    }
+
+    function updateSummary() {
+      const summaryContainer = document.getElementById('selectedAssets');
+      summaryContainer.innerHTML = '<h3>Selected Items</h3>';
+      
+      for (const [type, details] of Object.entries(assetsData)) {
+        const assetDiv = document.createElement('div');
+        assetDiv.className = 'asset-details';
+        assetDiv.innerHTML = `
+          <h4>${type.charAt(0).toUpperCase() + type.slice(1)}</h4>
+          <p>Model: ${details.model}</p>
+          <p>Quantity: ${details.quantity}</p>
+          <p>Serial: ${details.serial}</p>
+          <p>Asset Tag: ${details.tag}</p>
+        `;
+        summaryContainer.appendChild(assetDiv);
+      }
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('assetModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
   </script>
 </body>
 </html>

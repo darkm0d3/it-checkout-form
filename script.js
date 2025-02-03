@@ -118,3 +118,16 @@ function updateSummary() {
   }
 }
 
+// Login Page Script
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  if (email === 'felixmadjos@gmail.com' && password === 'NICE') {
+    window.location.href = 'success.html';
+  } else {
+    alert('Invalid email or password. Please try again.');
+  }
+});
+
