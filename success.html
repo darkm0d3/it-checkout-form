@@ -3,181 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout Form</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Employee Portal</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-image: url('/images2/bg2.jpg');
+      background-size: cover;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+
+    .assets-section {
+      border-left: 2px solid #eee;
+      padding-left: 30px;
+    }
+
+    .asset-item {
+      margin: 10px 0;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #4a90e2, #50e3c2);
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div class="success-header">
-    <h1>Welcome Back, Felix Madjos!</h1>
-    <p>Please complete your equipment request below</p>
-    <button onclick="window.location.href='index.html'" class="logout-btn">Logout</button>
-  </div>
-
-  <div class="checkout-container">
-    <div class="form-section">
+  <button class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+  
+  <div class="container">
+    <div class="employee-info">
       <h2>Employee Information</h2>
       <div class="form-group">
-        <label>First Name</label>
+        <label>Employee Number:</label>
         <input type="text" required>
       </div>
       <div class="form-group">
-        <label>Last Name</label>
+        <label>Employee Name:</label>
         <input type="text" required>
       </div>
       <div class="form-group">
-        <label>Employee Number</label>
+        <label>Manager's Name:</label>
         <input type="text" required>
       </div>
       <div class="form-group">
-        <label>Manager's Name</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>Department</label>
-        <input type="text" required>
+        <label>Department:</label>
+        <select>
+          <option>IT</option>
+          <option>HR</option>
+          <option>Cloud</option>
+          <option>Finance</option>
+        </select>
       </div>
     </div>
 
-    <div class="form-section assets-section">
-      <h2>Select Assets</h2>
+    <div class="assets-section">
+      <h2>IT Assets</h2>
       <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="laptop">
-          Laptop
-        </label>
+        <label><input type="checkbox" class="asset" data-type="laptop"> Laptop</label>
       </div>
       <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="monitor">
-          Monitor
-        </label>
+        <label><input type="checkbox" class="asset" data-type="phone"> Phone</label>
       </div>
       <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="phone">
-          Phone
-        </label>
+        <label><input type="checkbox" class="asset" data-type="monitor"> Monitor</label>
       </div>
       <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="accessories">
-          Other Accessories
-        </label>
+        <label><input type="checkbox" class="asset" data-type="headset"> Headset</label>
+      </div>
+      <div class="asset-item">
+        <label><input type="checkbox" class="asset" data-type="mouse"> Mouse</label>
+      </div>
+      <div class="asset-item">
+        <label><input type="checkbox" class="asset" data-type="keyboard"> Keyboard</label>
+      </div>
+      <div class="asset-item">
+        <label><input type="checkbox" class="asset" data-type="other"> Other</label>
       </div>
 
-      <div class="selected-assets" id="selectedAssets">
-        <h3>Selected Items</h3>
-      </div>
+      <div id="asset-details"></div>
     </div>
   </div>
 
   <div class="modal" id="assetModal">
     <div class="modal-content">
-      <div class="modal-header">
-        <h3>Asset Details</h3>
-        <span class="close-modal">&times;</span>
-      </div>
+      <h3>Asset Details</h3>
       <form id="assetForm">
         <div class="form-group">
-          <label>Model</label>
-          <select id="model" required>
-            <option value="">Select Model</option>
-            <option value="HP">HP</option>
-            <option value="EPOS">EPOS</option>
-            <option value="Lenovo">Lenovo</option>
-            <option value="APPLE">APPLE</option>
-            <option value="Other">Other Model</option>
+          <label>Quantity:</label>
+          <select id="quantity">
+            <option value="">Select</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option>
+            <option>7</option><option>8</option><option>9</option>
+            <option>10</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Quantity</label>
-          <select id="quantity" required>
-            <option value="">Select Quantity</option>
+          <label>Model:</label>
+          <select id="model">
+            <option>HP</option>
+            <option>EPOS</option>
+            <option>Lenovo</option>
+            <option>Other</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Serial Number</label>
-          <input type="text" id="serial" required>
+          <label>Serial Number:</label>
+          <input type="text" id="serial">
         </div>
         <div class="form-group">
-          <label>Asset Tag</label>
-          <input type="text" id="tag" required>
+          <label>Asset Tag:</label>
+          <input type="text" id="tag">
         </div>
-        <button type="submit" class="submit-btn">Save Details</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   </div>
 
   <script>
-    // Populate quantity options
-    const quantitySelect = document.getElementById('quantity');
-    for(let i = 1; i <= 10; i++) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = i;
-      quantitySelect.appendChild(option);
-    }
+    let currentAsset = null;
+    const assets = {};
 
-    const assetsData = {};
-    let currentAssetType = null;
-
-    document.querySelectorAll('.asset-checkbox').forEach(checkbox => {
+    document.querySelectorAll('.asset').forEach(checkbox => {
       checkbox.addEventListener('change', function() {
         if (this.checked) {
-          currentAssetType = this.dataset.type;
-          showModal();
+          currentAsset = this.dataset.type;
+          document.getElementById('assetModal').style.display = 'flex';
         } else {
-          delete assetsData[currentAssetType];
-          updateSummary();
+          delete assets[currentAsset];
+          updateAssetDisplay();
         }
       });
     });
 
-    document.querySelector('.close-modal').addEventListener('click', closeModal);
-    
     document.getElementById('assetForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      assetsData[currentAssetType] = {
-        model: document.getElementById('model').value,
+      assets[currentAsset] = {
         quantity: document.getElementById('quantity').value,
+        model: document.getElementById('model').value,
         serial: document.getElementById('serial').value,
         tag: document.getElementById('tag').value
       };
-      updateSummary();
-      closeModal();
+      updateAssetDisplay();
+      document.getElementById('assetModal').style.display = 'none';
     });
 
-    function showModal() {
-      document.getElementById('assetModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('assetModal').style.display = 'none';
-      document.getElementById('assetForm').reset();
-    }
-
-    function updateSummary() {
-      const summaryContainer = document.getElementById('selectedAssets');
-      summaryContainer.innerHTML = '<h3>Selected Items</h3>';
+    function updateAssetDisplay() {
+      const container = document.getElementById('asset-details');
+      container.innerHTML = '<h3>Selected Assets:</h3>';
       
-      for (const [type, details] of Object.entries(assetsData)) {
-        const assetDiv = document.createElement('div');
-        assetDiv.className = 'asset-details';
-        assetDiv.innerHTML = `
-          <h4>${type.charAt(0).toUpperCase() + type.slice(1)}</h4>
-          <p>Model: ${details.model}</p>
+      for (const [type, details] of Object.entries(assets)) {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <p><strong>${type.toUpperCase()}</strong></p>
           <p>Quantity: ${details.quantity}</p>
+          <p>Model: ${details.model}</p>
           <p>Serial: ${details.serial}</p>
-          <p>Asset Tag: ${details.tag}</p>
+          <p>Tag: ${details.tag}</p>
+          <hr>
         `;
-        summaryContainer.appendChild(assetDiv);
+        container.appendChild(div);
       }
     }
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('assetModal');
-      if (event.target === modal) {
-        closeModal();
+    window.onclick = function(e) {
+      if (e.target == document.getElementById('assetModal')) {
+        document.getElementById('assetModal').style.display = 'none';
       }
     }
   </script>
