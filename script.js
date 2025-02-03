@@ -66,3 +66,55 @@ document.getElementById("print-btn").addEventListener("click", function() {
     // Simulate sending the information to an email. This is a mock function.
     alert("PDF Sent to the User and Manager (functionality not implemented in this mock).");
 });
+
+function showModal() {
+  document.getElementById('assetModal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('assetModal').style.display = 'none';
+}
+
+// Handle asset checkbox clicks
+document.querySelectorAll('.asset-checkbox').forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    const assetType = this.dataset.type;
+    
+    if (this.checked) {
+      currentAssetType = assetType;
+      showModal();
+    } else {
+      delete assetsData[assetType];
+      updateSummary();
+    }
+  });
+});
+
+// Handle form submission inside modal
+document.getElementById('assetForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  assetsData[currentAssetType] = {
+    model: document.getElementById('model').value,
+    quantity: document.getElementById('quantity').value,
+    serial: document.getElementById('serial').value,
+    tag: document.getElementById('tag').value
+  };
+  updateSummary();
+  closeModal();
+});
+
+// Update summary when assets are selected
+function updateSummary() {
+  const summaryDiv = document.getElementById('selectedAssets');
+  summaryDiv.innerHTML = '<h3>Selected Items</h3>';
+  
+  for (const [asset, details] of Object.entries(assetsData)) {
+    summaryDiv.innerHTML += `
+      <div class="asset-details">
+        <strong>${asset.toUpperCase()}</strong><br>
+        Model: ${details.model} | Quantity: ${details.quantity} | Serial: ${details.serial} | Tag: ${details.tag}
+      </div>
+    `;
+  }
+}
+
