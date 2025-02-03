@@ -9,7 +9,7 @@
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 40px;
-      background-image: url('images/bg2.jpeg');
+      background-image: url('images/bg2.jpg');
       background-size: cover;
       background-position: center;
       color: #2d3436;
@@ -130,6 +130,34 @@
       border-radius: 8px;
       margin-bottom: 15px;
     }
+
+.submit-btn {
+      background: linear-gradient(135deg, #4a90e2, #50e3c2);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 20px auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Add employee number field styling (already in HTML) */
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dcdde1;
+      border-radius: 8px;
+      font-size: 14px;
+      appearance: none;
+      background: white;
+    }
   </style>
 </head>
 <body>
@@ -140,61 +168,68 @@
   </div>
 
   <!-- Checkout Form -->
-  <div class="checkout-container">
-    <!-- Personal Information Column -->
-    <div class="form-section">
-      <h2>Employee Information</h2>
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>Manager's Name</label>
-        <input type="text" required>
-      </div>
-      <div class="form-group">
-        <label>Department</label>
-        <input type="text" required>
-      </div>
+  <div class="form-section">
+    <h2>Employee Information</h2>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" required>
     </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" required>
+    </div>
+    <div class="form-group">
+      <label>Employee Number</label>
+      <input type="text" required>
+    </div>
+    <div class="form-group">
+      <label>Manager's Name</label>
+      <input type="text" required>
+    </div>
+    <div class="form-group">
+      <label>Department</label>
+      <input type="text" required>
+    </div>
+  </div>
 
     <!-- Assets Selection Column -->
-    <div class="form-section assets-section">
-      <h2>Select Assets</h2>
-      <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="laptop">
-          Laptop
-        </label>
+    <div class="modal" id="assetModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Asset Details</h3>
+        <span class="close-modal" onclick="closeModal()">&times;</span>
       </div>
-      <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="monitor">
-          Monitor
-        </label>
-      </div>
-      <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="phone">
-          Phone
-        </label>
-      </div>
-      <div class="asset-item">
-        <label>
-          <input type="checkbox" class="asset-checkbox" data-type="accessories">
-          Other Accessories
-        </label>
-      </div>
-
-      <!-- Selected Assets Summary -->
-      <div class="selected-assets" id="selectedAssets">
-        <h3>Selected Items</h3>
-        <!-- Dynamic content will be inserted here -->
-      </div>
+      <form id="assetForm">
+        <div class="form-group">
+          <label>Model</label>
+          <select id="model" required>
+            <option value="">Select Model</option>
+            <option value="HP">HP</option>
+            <option value="EPOS">EPOS</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="APPLE">APPLE</option>
+            <option value="Other">Other Model</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <select id="quantity" required>
+            <option value="">Select Quantity</option>
+            <?php for($i=1; $i<=10; $i++): ?>
+            <option value="<?= $i ?>"><?= $i ?></option>
+            <?php endfor; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Serial Number</label>
+          <input type="text" id="serial" required>
+        </div>
+        <div class="form-group">
+          <label>Asset Tag</label>
+          <input type="text" id="tag" required>
+        </div>
+        <button type="submit" class="submit-btn">Save Details</button>
+      </form>
     </div>
   </div>
 
