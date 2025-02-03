@@ -15,6 +15,54 @@
       position: relative;
     }
 
+.clouds {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50px;
+      animation: moveCloud linear infinite;
+      opacity: 0.7;
+      filter: blur(5px);
+    }
+
+    @keyframes moveCloud {
+      from { transform: translateX(100vw); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Modify the body style */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-image: url('/images2/bg2.jpg');
+      background-size: cover;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Add z-index to container and logout button */
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .logout-btn {
+      position: fixed;
+      z-index: 3;
+    }
+
+
     .container {
       max-width: 1200px;
       margin: 20px auto;
@@ -82,6 +130,46 @@
 </head>
 <body>
   <button class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+
+ <!-- Add clouds container at the top of body -->
+  <div class="clouds" id="clouds"></div>
+
+  <!-- Rest of your existing body content -->
+  <button class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+  <div class="container">
+    <!-- ... existing content ... -->
+  </div>
+
+  <script>
+    // Add this cloud creation script at the bottom of your existing script
+    function createClouds() {
+      const cloudsContainer = document.getElementById('clouds');
+      const numberOfClouds = 8;
+
+      for (let i = 0; i < numberOfClouds; i++) {
+        const cloud = document.createElement('div');
+        cloud.className = 'cloud';
+        
+        // Random cloud properties
+        const size = Math.random() * 100 + 50; // 50-150px
+        const top = Math.random() * 100; // 0-100% of viewport height
+        const duration = Math.random() * 20 + 20; // 20-40 seconds
+        const delay = Math.random() * -20; // 0-20s negative delay
+
+        cloud.style.cssText = `
+          width: ${size}px;
+          height: ${size/2}px;
+          top: ${top}%;
+          animation-duration: ${duration}s;
+          animation-delay: ${delay}s;
+        `;
+
+        cloudsContainer.appendChild(cloud);
+      }
+    }
+
+    // Initialize clouds when page loads
+    createClouds();
   
   <div class="container">
     <div class="employee-info">
